@@ -11,36 +11,53 @@ public class CollaztService {
         port(getPort());
         staticFiles.location("/public");
         get("collazt", (request,response) -> {
-            response.type("text/json");
-            int number = Integer.parseInt(request.queryParams("number"));
-            return CollaztSecuence(number);
+            response.type("aplication/json");
+            int value = Integer.parseInt(request.queryParams("value"));
+            return CollaztSequence(value);
         });
     }
-  
-    public static String CollaztSecuence(int num){
-        ArrayList<String> secuence = new ArrayList<>();
-        secuence.add(String.valueOf(num));
+    
+    public static String CollaztSequence(int value) {
+        int valueOriginal = value;
+        ArrayList<String> sequence = new ArrayList<>();
+        sequence.add(String.valueOf(value));
+        
+        while (value > 0 && value != 1) {
+            if (value % 2 == 0) {
+                value = value / 2;
+            } else {
+                value = value * 3 + 1;
+            }
+            sequence.add(String.valueOf(value));
+        }
 
-        while(num > 0 &&  num != 1){
-            if(num % 2 == 0){
-                num = num / 2;
-            }
-            else {
-                num = num * 3 + 1;
-            }
-            secuence.add(String.valueOf(num));
-        }
-        String result = secuence.get(0) + " ";
-        for(int i = 1; i < secuence.size(); i++){
-            result +=  " ==> " + secuence.get(i);
-        }
-        return result;
+        return printJSON(valueOriginal, sequence);
     }
+
+    public static String printJSON(int valueOriginal, ArrayList<String> sequence) {
+        StringBuilder json = new StringBuilder();
+        json.append("{");
+        json.append("\"Operation\": \"collatzsequence\", ");
+        json.append("\"Input\": ").append(valueOriginal).append(", ");
+        json.append("\"Output\": \"");
+
+        for (int i = 0; i < sequence.size(); i++) {
+            json.append(sequence.get(i));
+            if (i < sequence.size() - 1) {
+                json.append(" => ");
+            }
+        }
+
+        json.append("\"}");
+
+        return json.toString();
+    }
+
     
     private static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 4567;
+        return 5000;
     }
 }

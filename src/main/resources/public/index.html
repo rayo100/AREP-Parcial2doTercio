@@ -7,17 +7,17 @@
     </head>
     <body>
         <h2>Dame un número y te daré la sucesión según la conjetura de Collatz</h2>
-        <input id="number">
+        <input id="value">
         <button onclick="consult()">Consultar</button>
-        <p id="result">result</p>
+        <p id="output"></p>
         <script>
             const consult = () =>{
-                const number = document.getElementById("number").value;
-                const url = "/collazt" + "?number=" + number;
+                const value = document.getElementById("value").value;
+                const url = "/collazt" + "?value=" + value;
                 fetch(url).
                     then(response => response.text()).
                     then(data =>{
-                        document.getElementById("result").innerHTML = data;
+                        document.getElementById("output").innerHTML = data;
                     }
                 )
             }
