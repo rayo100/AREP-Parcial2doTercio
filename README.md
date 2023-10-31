@@ -10,7 +10,7 @@ Las tecnologías usadas en la solución deben ser maven, git, github, maven, spa
 
 ## Cómo correrlo en tu equipo
 
-´´´
+```
 Para clonarlo, ve a tu directorio de preferencia y escribe el siguiente comando
 
 git clone https://github.com/rayo100/Parcial2doTercio-AREP.git
@@ -30,7 +30,8 @@ java -cp "target/classes;target/dependency/*" org.example.CollaztService
 Para correrlo desde un dispositivo con sistema operativo Linux o Apple, corre el siguiente comando
 
 java -cp "target/classes:target/dependency/*" org.example.CollaztService
-´´´
+
+```
 Al realizar los pasos anteriores dirigete al browser e ingresa al siguiete enlace http://localhost:5000/index.html
 
 Te debería aparecer algo así
