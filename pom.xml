@@ -12,6 +12,7 @@
         <exec.mainClass>org.example.CollaztService</exec.mainClass>
     </properties>
     
+    
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.sparkjava/spark-core -->
         <dependency>
